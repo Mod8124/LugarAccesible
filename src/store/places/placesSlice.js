@@ -4,6 +4,7 @@ export const placesSlice = createSlice({
   name: 'placesSlice',
   initialState: {
     userLocation: null,
+    currentLocation: null,
     deniedLocation: true,
     nearbyPlaces: [],
   },
@@ -11,11 +12,23 @@ export const placesSlice = createSlice({
     setUserLocation: (state, { payload }) => {
       state.deniedLocation = false;
       state.userLocation = payload;
+      state.currentLocation = state.userLocation;
+    },
+    setCurrentLocation(state, { payload }) {
+      state.currentLocation = payload;
     },
     setDeniedLocation: (state) => {
       state.deniedLocation = true;
     },
+    setSearchNearPlaces(state, { payload }) {
+      payload.forEach((newPlace) => {
+        if (!state.nearbyPlaces.includes(newPlace.place_id)) {
+          state.nearbyPlaces.push(newPlace);
+        }
+      });
+    },
     setNearbyPlaces: (state, { payload }) => {
+      state.nearbyPlaces = [];
       // push new places when this not exists in the storage
       payload.forEach((newPlace) => {
         if (!state.nearbyPlaces.includes(newPlace.place_id)) {
@@ -26,4 +39,11 @@ export const placesSlice = createSlice({
   },
 });
 
-export const { setUserLocation, setDeniedLocation, setNearbyPlaces } = placesSlice.actions;
+export const {
+  setUserLocation,
+  setCurrentLocation,
+  setDeniedLocation,
+  setNearbyPlaces,
+  setOldNearByPlaces,
+  setSearchNearPlaces,
+} = placesSlice.actions;
