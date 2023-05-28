@@ -41,25 +41,28 @@ const Search = () => {
           />
 
           {showResults && (
+            <div className='px-4 bg-white flex justify-between pt-6 pb-2'>
+              <h5 className='text-neutral-700'>
+                Resultados de {queryValue}(<span className='font-bold'>{results.length}</span>)
+              </h5>
+              <AiOutlineCloseCircle
+                className='text-3xl text-primary-700 cursor-pointer'
+                onClick={() => {
+                  toggleShowResults();
+                  setQueryValue('');
+                }}
+              />
+            </div>
+          )}
+
+          {showResults && (
             <article
               className={
                 results.length > 0
                   ? 'bg-white h-[300px] overflow-y-scroll scrollbar__search absolute w-[100%] transition duration-150 ease-in-out'
-                  : 'bg-white h-[120px]  scrollbar__search absolute w-[100%] transition duration-150 ease-in-out'
+                  : 'bg-white h-[80px]  scrollbar__search absolute w-[100%] transition duration-150 ease-in-out'
               }
             >
-              <div className='px-4 flex justify-between pt-6'>
-                <h5 className='text-neutral-700'>
-                  Resultados de {queryValue}(<span className='font-bold'>{results.length}</span>)
-                </h5>
-                <AiOutlineCloseCircle
-                  className='text-3xl text-primary-700 cursor-pointer'
-                  onClick={() => {
-                    toggleShowResults();
-                    setQueryValue('');
-                  }}
-                />
-              </div>
               {isLoading && (
                 <div className='flex items-center px-4 pt-3 gap-x-2 text-neutral-900  text-pt flex-row'>
                   <GiEarthAfricaEurope className='animate-spin text-3xl text-primary-700' />{' '}

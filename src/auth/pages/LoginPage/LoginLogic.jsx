@@ -26,11 +26,11 @@ export const LoginLogic = () => {
   };
 
   useEffect(() => {
-    if (errorLogin?.msn) {
-      toast.error(`${errorLogin?.msn}`, { position: 'top-right', duration: 2000 });
+    if (errorLogin) {
+      toast.error(`${errorLogin}`, { position: 'top-right', duration: 3000 });
       setTimeout(() => {
         dispatch(setErrors(null));
-      }, 2000);
+      }, 3000);
     }
   }, [errorLogin]);
 

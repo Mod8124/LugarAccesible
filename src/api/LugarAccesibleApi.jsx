@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const URLS = {
   development: {
-    local: 'http://localhost:3000/',
+    local: 'http://localhost:3000/api/v1/',
   },
   production: {
-    donweb: 'https://vps-3308549-x.dattaweb.com/',
+    donweb: 'https://vps-3308549-x.dattaweb.com/api/v1',
     azure: 'https://devathon-api.azurewebsites.net/',
   },
 };

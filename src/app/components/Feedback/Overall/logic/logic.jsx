@@ -25,10 +25,10 @@ export const overallLogic = (changeView) => {
     if (user) {
       const feedbackEsp = {
         email: user.email,
-        nombre: user.name,
-        mensaje: data.msg,
-        satisfacciónGeneral: data.overallSatisfaction,
-        asunto: data.subject,
+        name: user.name,
+        msg: data.msg,
+        overallSatisfaction: data.overallSatisfaction,
+        subject: data.subject,
       };
       dispatch(submitFeedback(feedbackEsp));
       changeView('thanks');

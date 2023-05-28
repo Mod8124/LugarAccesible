@@ -22,11 +22,7 @@ export const User = () => {
       {user && (
         <article className='relative'>
           <picture className='h-[40px] w-[40px] cursor-pointer' onClick={toggleUserOptions}>
-            <img
-              className='w-full h-full'
-              src={`https://ui-avatars.com/api/?name=${user?.name}&background=002966&rounded=true&color=fff`}
-              alt='avatar user'
-            />
+            <img className='w-full h-full' src={user.avatar} alt='avatar user' />
           </picture>
 
           {userOptions && (

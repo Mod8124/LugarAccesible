@@ -1,50 +1,35 @@
-import { useEffect, useState } from 'react';
 import { ModalSide } from '../Modal-Side';
 import { useDetailPlace } from '../../hooks/useDetailPlace';
 import { getUrlImage } from '../../helpers/places';
-
+import { GiEarthAfricaEurope } from 'react-icons/gi';
 import Tabs from './Tabs';
-import IconAccebility from './IconAccebility';
 
 export default function DetailPlace() {
-  const { showModalPlaceDetail, loading, place, isDetailActive } = useDetailPlace();
-
-  // useEffect(() => {
-  //   console.log('placeId', placeId);
-
-  // }, []);
+  const { showModalPlaceDetail, loading, place, name, isDetailActive } = useDetailPlace();
 
   return (
     <>
       {isDetailActive && (
-        <ModalSide
-          title={loading ? 'Cargando...' : place.name}
-          // title=''
-          toggleActive={showModalPlaceDetail}
-        >
+        <ModalSide title={name} toggleActive={showModalPlaceDetail}>
+          {loading && (
+            <div className='flex items-center text-[1.2em] pt-3 gap-x-2 text-neutral-900  text-pt flex-row'>
+              <GiEarthAfricaEurope size={35} className='animate-spin text-primary-700' />{' '}
+              <h2 className='text-xl'>Cargando...</h2>
+            </div>
+          )}
           {!loading && (
             <div>
               <figure>
                 <img
-                  src={getUrlImage(place.photos)}
-                  alt={`Imagen del sitio ${place.name}`}
+                  src={
+                    place && place.photos
+                      ? getUrlImage(place.photos)
+                      : 'https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                  }
+                  alt={`Imagen del sitio`}
                   className='max-h-[150px] object-cover w-full'
                 />
               </figure>
-
-              <section className='my-3'>
-                {/* <p className='font-bold text-2xl text-gray-700'>{place.name}</p> */}
-
-                <div className='flex w-full justify-between items-center'>
-                  <div className='text-stone-600 text-md leading-tight'>
-                    <p className=''>
-                      {place.rating} ⭐ {`(${place.user_ratings_total})`}
-                    </p>
-                    <p className='first-letter:uppercase'>{place.types[0]}</p>
-                  </div>
-                  <IconAccebility place={place} size='lg' />
-                </div>
-              </section>
 
               <Tabs place={place} />
             </div>

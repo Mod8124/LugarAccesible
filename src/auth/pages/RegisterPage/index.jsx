@@ -1,5 +1,4 @@
 import { CiUser } from 'react-icons/ci';
-import { useToggle } from '../../../hooks/useToggle';
 import { RegisterLogic } from './RegisterLogic';
 import { Input } from '../../components/Input/';
 import { Form } from '../../components/Form';
@@ -14,10 +13,18 @@ import {
 } from 'react-icons/ai';
 
 const RegisterPage = () => {
-  const { register, handleSubmit, errors, onSubmit, isLoading } = RegisterLogic();
-  const [showPassword, toggleShowPassword] = useToggle(false);
-  const [showConfirmPassword, toggleShowConfirmPassword] = useToggle(false);
-  const imageBack = '/assets/images/openMap-back.jpg';
+  const {
+    register,
+    handleSubmit,
+    errors,
+    onSubmit,
+    isLoading,
+    imageBack,
+    showPassword,
+    showConfirmPassword,
+    toggleShowPassword,
+    toggleShowConfirmPassword,
+  } = RegisterLogic();
 
   return (
     <main className='flex min-h-screen flex-wrap'>
@@ -27,7 +34,7 @@ const RegisterPage = () => {
       >
         <figure className='lg:p-11'>
           <Link to='/'>
-            <img src='/assets/logo/logo.svg' alt='logo de la web LugarAccesible' />
+            <img src='/assets/logo/logo.svg' alt='logo LugarAccesible' />
           </Link>
         </figure>
       </section>

@@ -1,10 +1,9 @@
-import { FeedbackApi } from '../../api/FeedbackApi';
+import LugarAccesibleApi from '../../api/LugarAccesibleApi';
 import { restart } from './feedbackslice';
 
 export const submitFeedback = (feedbackData) => async (dispatch) => {
   try {
-    const response = await FeedbackApi.post('', feedbackData);
-
+    const response = await LugarAccesibleApi.post('feedback', feedbackData);
     if (response.status !== 200) {
       throw new Error('Failed to submit feedback');
     }

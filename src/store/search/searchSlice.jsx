@@ -34,7 +34,6 @@ export const searchSlice = createSlice({
       if (state.searchHistory.length > 6) {
         state.searchHistory.pop();
       }
-
       // Save the updated search history to the local storage
       localStorage.setItem('searchHistory', JSON.stringify(state.searchHistory));
     },

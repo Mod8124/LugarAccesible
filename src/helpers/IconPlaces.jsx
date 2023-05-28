@@ -1,7 +1,7 @@
 // icon availables
 
 export const IconsPlaces = [
-  'accouting',
+  'accounting',
   'airport',
   'atm',
   'bakery',

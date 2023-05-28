@@ -23,10 +23,10 @@ export const userLogic = (changeView) => {
     // check the data update the keys to spanish then send it
     const feedbackEsp = {
       email: data.email,
-      nombre: data.name,
-      mensaje: feedback.msg,
-      satisfacciónGeneral: feedback.overallSatisfaction,
-      asunto: feedback.subject,
+      name: data.name,
+      msg: feedback.msg,
+      overallSatisfaction: feedback.overallSatisfaction,
+      subject: feedback.subject,
     };
     dispatch(submitFeedback(feedbackEsp));
     changeView('thanks');
