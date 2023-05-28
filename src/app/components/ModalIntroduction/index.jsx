@@ -3,9 +3,11 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import { useToggle } from '../../../hooks/useToggle';
 import { setIsIntroductionActive } from '../../../store/guide/guideSlice';
 import { useDispatch } from 'react-redux';
+import { useTour } from '@reactour/tour';
 
 export const ModalIntroduction = () => {
   const [saveAnswer, toggleSaveAnswer] = useToggle(false);
+  const { setIsOpen } = useTour();
   const dispatch = useDispatch();
   const toggleIsIntroductionActive = () => {
     dispatch(setIsIntroductionActive());
@@ -85,7 +87,13 @@ export const ModalIntroduction = () => {
             >
               Saltar tutorial
             </button>
-            <button className='bg-primary-900 text-white basis-full md:max-w-[230px] justify-center flex h-[40px] px-11 items-center gap-x-2 hover:bg-primary-700'>
+            <button
+              onClick={() => {
+                toggleIsIntroductionActive();
+                setIsOpen(true);
+              }}
+              className='bg-primary-900 text-white basis-full md:max-w-[230px] justify-center flex h-[40px] px-11 items-center gap-x-2 hover:bg-primary-700'
+            >
               Seguir tutorial <IoIosArrowForward className='text-2xl' />
             </button>
           </div>

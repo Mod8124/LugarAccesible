@@ -1,6 +1,7 @@
 export const Button = ({ accesible, active, changeActive }) => {
   return (
     <button
+      data-lugar={accesible ? 'accesible' : 'no-accesible'}
       onClick={() => changeActive(accesible ? 'accesible' : 'no-accesible')}
       className={`bg-white flex h-[44px] px-4 flex items-center gap-x-2 ${
         active && !accesible

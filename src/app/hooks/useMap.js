@@ -76,6 +76,7 @@ export const useMap = () => {
         map,
       });
       map.setCenter(userLocation);
+      map.setZoom(13.3);
       createCircle(userLocation);
       marker.addListener('click', () => {
         infoMarker.open({

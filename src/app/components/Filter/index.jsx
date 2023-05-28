@@ -15,7 +15,10 @@ export const Filter = () => {
   };
 
   return (
-    <article className='fixed bottom-2 lg:bottom-0 lg:top-[70px] z-[1] left-3 flex gap-x-3'>
+    <article
+      className='fixed bottom-2  h-[44px] lg:bottom-0 lg:top-[70px] z-[1] left-3 flex gap-x-3'
+      data-filter
+    >
       <Button
         accesible={true}
         changeActive={changeActive}

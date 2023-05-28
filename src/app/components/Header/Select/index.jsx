@@ -7,7 +7,7 @@ export const Select = ({ options, titleOption, changeTitleOption }) => {
   const optionsFirst = options[0];
 
   return (
-    <article className='w-full h-full relative'>
+    <article className='w-full h-full relative' data-select>
       {/* select'title */}
       <div
         className=' w-full flex justify-center items-center h-full text-neutral-500 gap-x-2 cursor-pointer'
