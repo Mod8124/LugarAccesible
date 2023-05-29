@@ -11,7 +11,7 @@ const URLS = {
 };
 
 const LugarAccesibleApi = axios.create({
-  baseURL: URLS.production.donweb,
+  baseURL: URLS.development.local,
 });
 
 LugarAccesibleApi.interceptors.request.use((config) => {
