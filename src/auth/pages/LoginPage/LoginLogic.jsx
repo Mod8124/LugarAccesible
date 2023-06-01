@@ -4,17 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
 import { loginValidations } from '../../../validations/login.validations';
 import { submitLogin } from '../../../store/auth/thunk';
-
-import { setErrors } from '../../../store/auth/authSlice';
 
 export const LoginLogic = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { isLoading, isLogued, errors: errorLogin } = useSelector((state) => state.auth);
+  const { isLoading, user } = useSelector((state) => state.auth);
 
   const LogInCorrect = () => {
     toast.success('¡Te has logueado exitosamente!', { position: 'top-right', duration: 2000 });
@@ -26,20 +23,10 @@ export const LoginLogic = () => {
   };
 
   useEffect(() => {
-    if (errorLogin) {
-      toast.error(`${errorLogin}`, { position: 'top-right', duration: 3000 });
-      setTimeout(() => {
-        dispatch(setErrors(null));
-      }, 3000);
-    }
-  }, [errorLogin]);
-
-  useEffect(() => {
-    if (isLogued) {
+    if (user) {
       LogInCorrect();
-      dispatch(setErrors(null));
     }
-  }, [isLogued]);
+  }, [user]);
 
   // validate the inputs
   const {

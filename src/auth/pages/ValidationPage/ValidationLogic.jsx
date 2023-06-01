@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { submitValidation } from '../../../store/auth/thunk';
@@ -24,8 +23,6 @@ export const ValidationLogic = () => {
   }, [isValid]);
 
   const userCreated = () => {
-    toast.success('Usuario Confirmado', { position: 'top-right', duration: 2000 });
-
     // redirect the user after the user have created
     setTimeout(() => {
       navigate('/auth/login');

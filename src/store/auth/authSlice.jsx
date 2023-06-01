@@ -7,9 +7,7 @@ const base = {
   user: checkUser,
   isLoading: false,
   errors: null,
-  isCreated: false,
   isValid: false,
-  isLogued: false,
   favorites: [],
   isModalActive: false,
   view: 'edit', // edit , favorites
@@ -31,21 +29,14 @@ export const authSlice = createSlice({
     setView(state, { payload }) {
       state.view = payload;
     },
-    setIsCreated(state) {
-      state.isCreated = !state.isCreated;
-    },
     setUser(state, { payload }) {
       state.user = payload;
-    },
-    setLogued(state) {
-      state.isLogued = !state.isLogued;
     },
     setErrors(state, { payload }) {
       state.errors = payload;
     },
     setLogOut(state) {
       state.user = null;
-      state.isLogued = false;
       state.errors = null;
       sessionStorage.removeItem('user');
       sessionStorage.removeItem('jwt');
@@ -58,8 +49,6 @@ export const {
   setIsValid,
   setUser,
   setErrors,
-  setIsCreated,
-  setLogued,
   setLogOut,
   setIsModalActive,
   setView,

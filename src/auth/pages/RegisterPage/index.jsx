@@ -105,7 +105,7 @@ const RegisterPage = () => {
             <strong className='text-neutral-700'>Política de privacidad</strong> y los{' '}
             <strong className='text-neutral-700'>Términos de uso</strong> de LugarAccesible.
           </p>
-          <Button>
+          <Button isDisabled={isLoading}>
             {isLoading ? (
               <AiOutlineLoading3Quarters className='animate-spin w-full text-pk' />
             ) : (

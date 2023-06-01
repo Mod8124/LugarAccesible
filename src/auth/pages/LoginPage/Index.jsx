@@ -11,26 +11,20 @@ import {
   AiOutlineEye,
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
-import logoWeb from '/assets/logo/logo.svg';
 
 const LoginPage = () => {
   const { register, handleSubmit, errors, onSubmit, isLoading } = LoginLogic();
   const [showPassword, toggleShowPassword] = useToggle(false);
-  const imageBack = '/assets/images/background-login.jpg';
+  const imageBack = '/assets/images/background-loginUser.jpg';
 
   return (
     <main className='flex min-h-screen flex-wrap'>
-      <section
-        className='basis-full flex justify-center items-center lg:justify-normal lg:items-baseline lg:basis-1/2 bg-cover bg-center '
-        style={{ backgroundImage: `url(${imageBack})` }}
-      >
-        <figure className='lg:p-11'>
+      <section className='flex basis-full lg:basis-1/2 items-center justify-center relative order-last lg:order-first'>
+        <figure className='absolute top-10 left-8 hidden lg:flex'>
           <Link to='/'>
-            <img src={logoWeb} alt='logo de la web LugarAccesible' className='w-[250px]' />
+            <img src='/assets/logo/logo-black.svg' alt='logo LugarAccesible' />
           </Link>
         </figure>
-      </section>
-      <section className='flex basis-full lg:basis-1/2 items-center justify-center'>
         <Form
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
@@ -41,7 +35,7 @@ const LoginPage = () => {
             register={register}
             name='email'
             type='text'
-            placeholder='correo@correo.com'
+            placeholder='Email'
             autoComplete='email'
             error={errors.email?.message}
           >
@@ -52,8 +46,8 @@ const LoginPage = () => {
             register={register}
             name='password'
             type={showPassword ? 'text' : 'password'}
-            placeholder='**********'
-            autoComplete='new-password'
+            placeholder='Contraseña'
+            autoComplete='password'
             error={errors.password?.message}
           >
             {showPassword ? (
@@ -79,6 +73,16 @@ const LoginPage = () => {
             </Link>
           </p>
         </Form>
+      </section>
+      <section
+        className='basis-full flex justify-center items-center lg:justify-normal lg:items-baseline lg:basis-1/2 bg-cover bg-center'
+        style={{ backgroundImage: `url(${imageBack})` }}
+      >
+        <figure className='lg:hidden'>
+          <Link to='/'>
+            <img src='/assets/logo/logo.svg' alt='logo LugarAccesible' />
+          </Link>
+        </figure>
       </section>
     </main>
   );
