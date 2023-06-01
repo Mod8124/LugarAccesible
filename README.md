@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="/public/assets/logo/logo-black.svg" width="80"/>
+<img src="/public/assets/logo/logo.svg" width="180"/>
 
 <h2>LugarAccesible</h2>
 
@@ -21,13 +21,13 @@
 > ~
 > </div>
 
-###📃Project Overview
+## 📃Project Overview
 
 **This Version** is mine if you want to see the real version you can check the original repo [devathon-frontend](https://github.com/joserangel25/devathon-frontend)
 
 The project involves the development of a web platform focused on accessibility, which allows people with reduced mobility to obtain information about the accessibility of public and private spaces based on their location. Third-party APIs will be used to gather geolocation information and accessibility details from various places. The platform will have a frontend for the visualization and exploration of accessibility data, and a backend for data processing and communication with the geolocation and accessibility APIs.
 
-### 📋 Features
+## 📋 Features
 
 - Responsive
 - Modal-introduction
@@ -40,7 +40,7 @@ The project involves the development of a web platform focused on accessibility,
 - Search based on establish
 - Drag the map for more place
 
-### 🧮 install
+## 🧮 install
 
 Needing **prettier** extension on your code editor
 
