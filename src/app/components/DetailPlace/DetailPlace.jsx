@@ -1,39 +1,53 @@
 import { ModalSide } from '../Modal-Side';
 import { useDetailPlace } from '../../hooks/useDetailPlace';
-import { getUrlImage } from '../../helpers/places';
 import { GiEarthAfricaEurope } from 'react-icons/gi';
-import Tabs from './Tabs';
+import { useState } from 'react';
+import { Details } from './Details';
+import { Comments } from './Comments';
 
 export default function DetailPlace() {
   const { showModalPlaceDetail, loading, place, name, isDetailActive } = useDetailPlace();
-
+  const [view, setView] = useState('detail');
+  const changeView = (view) => {
+    setView(view);
+  };
   return (
     <>
       {isDetailActive && (
         <ModalSide title={name} toggleActive={showModalPlaceDetail}>
+          <article className='flex gap-x-6  border-b-[2px] border-b-neutral-100'>
+            <button
+              className={
+                view === 'detail'
+                  ? 'text-primary-900 px-2 pb-2 border-b-[2px] border-b-primary-900 outline-none'
+                  : 'text-neutral-500 px-2 pb-2 border-b-[2px] border-b-primary-900/0 outline-none'
+              }
+              onClick={() => changeView('detail')}
+            >
+              Detalles
+            </button>
+            <button
+              className={
+                view === 'comments'
+                  ? 'text-primary-900 px-2 pb-2 border-b-[2px] border-b-primary-900 outline-none'
+                  : 'text-neutral-500 px-2 pb-2 border-b-[2px] border-b-primary-900/0 outline-none'
+              }
+              onClick={() => changeView('comments')}
+            >
+              Comentarios
+            </button>
+          </article>
           {loading && (
             <div className='flex items-center text-[1.2em] pt-3 gap-x-2 text-neutral-900  text-pt flex-row'>
               <GiEarthAfricaEurope size={35} className='animate-spin text-primary-700' />{' '}
               <h2 className='text-xl'>Cargando...</h2>
             </div>
           )}
-          {!loading && (
-            <div>
-              <figure>
-                <img
-                  src={
-                    place && place.photos
-                      ? getUrlImage(place.photos)
-                      : 'https://images.unsplash.com/photo-1473163928189-364b2c4e1135?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
-                  }
-                  alt={`Imagen del sitio`}
-                  className='max-h-[150px] object-cover w-full'
-                />
-              </figure>
 
-              <Tabs place={place} />
-            </div>
-          )}
+          <article>
+            {!loading && view === 'detail' && <Details place={place} />}
+            {!loading && view === 'comments' && <Comments />}
+          </article>
         </ModalSide>
       )}
     </>

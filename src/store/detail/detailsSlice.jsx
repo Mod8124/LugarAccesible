@@ -8,6 +8,7 @@ const base = {
   comments: [],
   place: null,
   loading: false,
+  isLoadingComment: false,
 };
 
 export const detailSlice = createSlice({
@@ -26,6 +27,9 @@ export const detailSlice = createSlice({
     setIsLoading(state) {
       state.loading = !state.loading;
     },
+    setIsLoadingComment(state) {
+      state.isLoadingComment = !state.isLoadingComment;
+    },
     setPlace(state, { payload }) {
       state.place = payload;
     },
@@ -43,6 +47,7 @@ export const {
   setName,
   setPlaceId,
   setIsLoading,
+  setIsLoadingComment,
   setPlace,
   setComments,
   setRating,

@@ -28,6 +28,14 @@
     background: #344051;
   }
 
+  .hiddenHover {
+    opacity: 0;
+  }
+
+  .showHover:hover .hiddenHover {
+    opacity: 1;
+  }
+
   /* hidden the landscape on md  */
   @media (max-width: 768px) and (orientation: landscape) {
     .modal__landscape {

@@ -7,8 +7,10 @@ export const getDetail = (placeId) => {
     try {
       dispatch(setPlaceId(placeId));
       dispatch(setIsLoading());
-      const commentsPromise = LugarAccesibleApi.get(`comment?place_id=${placeId}`);
-      const detailsPromise = LugarAccesibleApi.get(`place/detail?place_id=${placeId}`);
+      const commentsPromise = LugarAccesibleApi.get(
+        `comment?place_id=${'70fe5d60-ef38-4580-87c5-a07f4f2803c4'}`,
+      );
+      const detailsPromise = LugarAccesibleApi.get(`place/detail/mock?place_id=${placeId}`);
 
       const [commentsResp, detailsResp] = await Promise.all([commentsPromise, detailsPromise]);
 
@@ -38,6 +40,28 @@ export const postComment = (form) => {
   };
 };
 
-export const editComment = () => {};
+export const editComment = (form) => {
+  return async (dispatch) => {
+    try {
+      const { data: comments } = await LugarAccesibleApi.post('comment/edit', form);
+      dispatch(setComments(comments.data.comments));
+      dispatch(setRating(comments.data.rating));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
-export const deleteComment = () => {};
+export const deleteComment = (form) => {
+  return async (dispatch) => {
+    try {
+      const { data: comments } = await LugarAccesibleApi.delete(
+        `comment/delete/${form.id}/${form.place_id}`,
+      );
+      dispatch(setComments(comments.data.comments));
+      dispatch(setRating(comments.data.rating));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

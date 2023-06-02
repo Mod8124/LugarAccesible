@@ -6,7 +6,7 @@ export const getNearbyPlaces = (location) => {
   return async (dispatch) => {
     try {
       const { data } = await LugarAccesibleApi.get(
-        `place/list?lat=${location.lat}&lng=${location.lng}`,
+        `place/list/mock?lat=${location.lat}&lng=${location.lng}`,
       );
       dispatch(setNearbyPlaces(data));
     } catch (error) {
