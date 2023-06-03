@@ -1,5 +1,6 @@
 import { setIsLoading, setPlace, setPlaceId, setComments, setRating } from './detailsSlice';
 import LugarAccesibleApi from '../../api/LugarAccesibleApi';
+import toast from 'react-hot-toast';
 
 export const getDetail = (placeId) => {
   console.log(placeId);
@@ -32,6 +33,10 @@ export const postComment = (form) => {
   return async (dispatch) => {
     try {
       const { data: comments } = await LugarAccesibleApi.post('comment', form);
+      toast.success('Comentario agregado', {
+        duration: 2000,
+        position: 'top-right',
+      });
       dispatch(setComments(comments.data.comments));
       dispatch(setRating(comments.data.rating));
     } catch (err) {
@@ -44,6 +49,10 @@ export const editComment = (form) => {
   return async (dispatch) => {
     try {
       const { data: comments } = await LugarAccesibleApi.post('comment/edit', form);
+      toast.success('Comentario actualizado', {
+        duration: 2000,
+        position: 'top-right',
+      });
       dispatch(setComments(comments.data.comments));
       dispatch(setRating(comments.data.rating));
     } catch (err) {
@@ -58,6 +67,10 @@ export const deleteComment = (form) => {
       const { data: comments } = await LugarAccesibleApi.delete(
         `comment/delete/${form.id}/${form.place_id}`,
       );
+      toast.success('Comentario borrado', {
+        duration: 2000,
+        position: 'top-right',
+      });
       dispatch(setComments(comments.data.comments));
       dispatch(setRating(comments.data.rating));
     } catch (err) {
