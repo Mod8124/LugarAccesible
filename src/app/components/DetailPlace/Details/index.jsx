@@ -1,12 +1,26 @@
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { FaMapMarkerAlt, FaRegMap, FaPhoneAlt, FaClock } from 'react-icons/fa';
-import { ImEarth } from 'react-icons/im';
 import { typesToSpanish } from '../../../../helpers/typesToSpanish';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { getUrlImage } from '../../../helpers/places';
+import { ImEarth } from 'react-icons/im';
 import { Paragraph } from './paragraph';
+import { useDispatch } from 'react-redux';
+import { postFavorite } from '../../../../store/auth/thunk';
 
 export const Details = ({ place }) => {
   const day = new Date().getDay();
+  const dispatch = useDispatch();
+  const sendPostFavorite = () => {
+    const newFavorite = {
+      name: place.name,
+      formatted_address: place.formatted_address ? place.formatted_address : '',
+      place_id: place.place_id,
+      types: place.types,
+      location: place.location,
+      wheelchair_accessible_entrance: place.wheelchair_accessible_entrance,
+    };
+    dispatch(postFavorite(newFavorite));
+  };
   return (
     <article className='pt-5 '>
       <figure>
@@ -36,14 +50,17 @@ export const Details = ({ place }) => {
             : 'Lugar no accesible para sillas de ruedas'}
         </p>
       </div>
-      <div className='flex items-center gap-x-4 py-4  border-b-[1px] boder-b-neutral-100'>
+      <div
+        className='flex items-center gap-x-4 py-4  border-b-[1px] boder-b-neutral-100 hover:bg-neutral-100/40 cursor-pointer'
+        onClick={sendPostFavorite}
+      >
         {!place.isFavorite ? (
           <AiOutlineHeart size={30} className='text-alert-error' />
         ) : (
           <AiFillHeart size={30} className='text-alert-error' />
         )}
         <p className='text-primary-900'>
-          {!place.isFavorite ? 'Agregar a Favoritos' : 'Agregado a Favoritos'}
+          {!place.isFavorite ? 'Agregar a Favoritos' : 'Agregado a tus Favoritos'}
         </p>
       </div>
 

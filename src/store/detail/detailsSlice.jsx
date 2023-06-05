@@ -30,6 +30,9 @@ export const detailSlice = createSlice({
     setIsLoadingComment(state) {
       state.isLoadingComment = !state.isLoadingComment;
     },
+    setDetailFavorite(state) {
+      state.place.isFavorite = true;
+    },
     setPlace(state, { payload }) {
       state.place = payload;
     },
@@ -51,4 +54,5 @@ export const {
   setPlace,
   setComments,
   setRating,
+  setDetailFavorite,
 } = detailSlice.actions;

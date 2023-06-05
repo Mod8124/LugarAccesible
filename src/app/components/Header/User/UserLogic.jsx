@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useToggle } from '../../../../hooks/useToggle';
 import { setIsModalActive, setView, setLogOut } from '../../../../store/auth/authSlice';
+import { getFavorites } from '../../../../store/auth/thunk';
 
 export const UserLogic = () => {
   const { user } = useSelector((state) => state.auth);
@@ -17,6 +18,9 @@ export const UserLogic = () => {
 
   const changeView = (value) => {
     dispatch(setView(value));
+    if (value === 'favorite') {
+      dispatch(getFavorites());
+    }
   };
 
   return {

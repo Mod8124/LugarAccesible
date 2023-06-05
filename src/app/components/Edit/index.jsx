@@ -1,25 +1,11 @@
 import { ModalSide } from '../Modal-Side';
-import { AiOutlineHeart, AiOutlineMail } from 'react-icons/ai';
-import { Input } from '../../../auth/components/Input';
-import { Error } from '../../../auth/components/Error';
-import { CiUser } from 'react-icons/ci';
-import { Button } from '../../../auth/components/button';
-import { BiLoader } from 'react-icons/bi';
+import { AiOutlineHeart, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { EditLogic } from './EditLogic';
+import { Card } from './Favorites/Card';
+import { Profile } from './Profile';
 
 export const Edit = () => {
-  const {
-    isModalActive,
-    view,
-    toggleModal,
-    handleSubmit,
-    onSubmit,
-    register,
-    user,
-    errors,
-    isLoading,
-    favorites,
-  } = EditLogic();
+  const { isModalActive, view, toggleModal, favorites, isLoading } = EditLogic();
   return (
     <>
       {isModalActive && (
@@ -27,55 +13,10 @@ export const Edit = () => {
           title={view === 'edit' ? 'Editar pefil' : 'Tus favoritos'}
           toggleActive={toggleModal}
         >
-          {view === 'edit' && (
-            <article>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='pb-2'>
-                  <label className='text-neutral-700' htmlFor='name'>
-                    Nombre de usuario:
-                  </label>
-                </div>
-                <Input
-                  register={register}
-                  name='name'
-                  type='text'
-                  placeholder='Nombre'
-                  autoComplete='off'
-                  value={user.name}
-                  error={errors.name?.message}
-                >
-                  <CiUser />
-                </Input>
-                <Error content={errors.name?.message}></Error>
-                <div className='pb-2'>
-                  <label className='text-neutral-700' htmlFor='name'>
-                    Correo Electronico
-                  </label>
-                </div>
-                <Input
-                  register={register}
-                  name='email'
-                  type='text'
-                  placeholder='Email'
-                  autoComplete='email'
-                  value={user.email}
-                  error={errors.email?.message}
-                >
-                  <AiOutlineMail />
-                </Input>
-                <Error content={errors.email?.message}></Error>
-                <Button>
-                  {isLoading && (
-                    <BiLoader className='text-white text-2xl text-center w-full animate-spin' />
-                  )}
-                  {!isLoading && 'Actualizar perfil'}
-                </Button>
-              </form>
-            </article>
-          )}
+          {view === 'edit' && <Profile />}
           {view === 'favorite' && (
             <article className='w-full'>
-              {favorites.length === 0 && (
+              {!isLoading && favorites.length === 0 && (
                 <div>
                   <h3 className='flex gap-x-3 items-center text-pd text-neutral-700'>
                     <AiOutlineHeart className='text-alert-error text-2xl' /> No tienes lugares
@@ -88,6 +29,26 @@ export const Edit = () => {
                 </div>
               )}
             </article>
+          )}
+          {isLoading && (
+            <div className='flex items-center text-[1.2em] pt-3 gap-x-2 text-neutral-900  text-pt flex-row'>
+              <AiOutlineLoading3Quarters size={35} className='animate-spin text-primary-700' />{' '}
+              <h2 className='text-xl'>Cargando...</h2>
+            </div>
+          )}
+          {!isLoading && favorites.length > 0 && (
+            <div>
+              <h2 className='flex gap-x-3 items-center text-pd text-neutral-700'>
+                Lugares favoritos <strong className='text-primary-900'>({favorites.length})</strong>
+              </h2>
+              <div className='pt-6'>
+                {favorites.map((favorite) => (
+                  <div key={favorite.place_id}>
+                    <Card favorite={favorite} />
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </ModalSide>
       )}

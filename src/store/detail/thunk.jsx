@@ -3,7 +3,6 @@ import LugarAccesibleApi from '../../api/LugarAccesibleApi';
 import toast from 'react-hot-toast';
 
 export const getDetail = (placeId) => {
-  console.log(placeId);
   return async (dispatch) => {
     try {
       dispatch(setPlaceId(placeId));
