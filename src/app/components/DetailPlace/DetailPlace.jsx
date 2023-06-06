@@ -1,17 +1,17 @@
-import { ModalSide } from '../Modal-Side';
 import { useDetailPlace } from '../../hooks/useDetailPlace';
 import { GiEarthAfricaEurope } from 'react-icons/gi';
-import { useState } from 'react';
-import { Details } from './Details';
+import { ModalSide } from '../Modal-Side';
 import { Comments } from './Comments';
+import { Details } from './Details';
+import { useState } from 'react';
 
 export default function DetailPlace() {
   const { showModalPlaceDetail, loading, place, name, isDetailActive } = useDetailPlace();
-  const [view, setView] = useState('detail');
   const getButtonClassName = (targetView) =>
     `text-${view === targetView ? 'primary-900' : 'neutral-500'} px-2 pb-2 border-b-[2px] ${
       view === targetView ? 'border-b-primary-900' : 'border-b-primary-900/0'
     } outline-none`;
+  const [view, setView] = useState('detail');
   const changeView = (view) => {
     setView(view);
   };

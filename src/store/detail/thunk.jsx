@@ -7,10 +7,8 @@ export const getDetail = (placeId) => {
     try {
       dispatch(setPlaceId(placeId));
       dispatch(setIsLoading());
-      const commentsPromise = LugarAccesibleApi.get(
-        `comment?place_id=${'70fe5d60-ef38-4580-87c5-a07f4f2803c4'}`,
-      );
-      const detailsPromise = LugarAccesibleApi.get(`place/detail/mock?place_id=${placeId}`);
+      const commentsPromise = LugarAccesibleApi.get(`comment?place_id=${placeId}`);
+      const detailsPromise = LugarAccesibleApi.get(`place/detail?place_id=${placeId}`);
 
       const [commentsResp, detailsResp] = await Promise.all([commentsPromise, detailsPromise]);
 

@@ -1,5 +1,5 @@
 import { setIsLoading, setErrors, setUser, setIsValid, setFavorites, setLogOut } from './authSlice';
-import { setDetailFavorite } from '../detail/detailsSlice';
+import { setDetailFavorite, setDetailFavoriteRemove } from '../detail/detailsSlice';
 import LugarAccesibleApi from '../../api/LugarAccesibleApi';
 import { toast } from 'react-hot-toast';
 
@@ -191,6 +191,30 @@ export const deleteFavorite = (placeId) => {
       const { data } = await LugarAccesibleApi.delete(`favorite/${placeId}`);
       if (data) {
         dispatch(setFavorites(data.data));
+        toast.success('Favorito eliminado', {
+          position: 'top-right',
+          duration: 3500,
+        });
+      }
+    } catch (err) {
+      const { response } = err;
+      if (response.data.msg) {
+        toast.error(`${response.data.msg}`, {
+          position: 'top-right',
+          duration: 3500,
+        });
+      }
+      dispatch(setErrors(response.data.msg)); // set errors
+    }
+  };
+};
+
+export const deleteFavoriteByDetail = (placeId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await LugarAccesibleApi.delete(`favorite/${placeId}`);
+      if (data) {
+        dispatch(setDetailFavoriteRemove());
         toast.success('Favorito eliminado', {
           position: 'top-right',
           duration: 3500,

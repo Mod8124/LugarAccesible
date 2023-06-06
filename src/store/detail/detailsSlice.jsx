@@ -33,6 +33,9 @@ export const detailSlice = createSlice({
     setDetailFavorite(state) {
       state.place.isFavorite = true;
     },
+    setDetailFavoriteRemove(state) {
+      state.place.isFavorite = false;
+    },
     setPlace(state, { payload }) {
       state.place = payload;
     },
@@ -55,4 +58,5 @@ export const {
   setComments,
   setRating,
   setDetailFavorite,
+  setDetailFavoriteRemove,
 } = detailSlice.actions;

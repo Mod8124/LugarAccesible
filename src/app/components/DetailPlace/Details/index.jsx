@@ -4,13 +4,24 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { getUrlImage } from '../../../helpers/places';
 import { ImEarth } from 'react-icons/im';
 import { Paragraph } from './paragraph';
-import { useDispatch } from 'react-redux';
-import { postFavorite } from '../../../../store/auth/thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { postFavorite, deleteFavoriteByDetail } from '../../../../store/auth/thunk';
+import { toast } from 'react-hot-toast';
 
 export const Details = ({ place }) => {
   const day = new Date().getDay();
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const deleteFavorite = () => {
+    dispatch(deleteFavoriteByDetail(place.place_id));
+  };
   const sendPostFavorite = () => {
+    if (!user) {
+      return toast.error('Registrate, para agregar un favorito', {
+        duration: 2000,
+        position: 'top-right',
+      });
+    }
     const newFavorite = {
       name: place.name,
       formatted_address: place.formatted_address ? place.formatted_address : '',
@@ -52,15 +63,15 @@ export const Details = ({ place }) => {
       </div>
       <div
         className='flex items-center gap-x-4 py-4  border-b-[1px] boder-b-neutral-100 hover:bg-neutral-100/40 cursor-pointer'
-        onClick={sendPostFavorite}
+        onClick={() => (place.isFavorite ? deleteFavorite() : sendPostFavorite())}
       >
-        {!place.isFavorite ? (
-          <AiOutlineHeart size={30} className='text-alert-error' />
-        ) : (
+        {place.isFavorite ? (
           <AiFillHeart size={30} className='text-alert-error' />
+        ) : (
+          <AiOutlineHeart size={30} className='text-alert-error' />
         )}
         <p className='text-primary-900'>
-          {!place.isFavorite ? 'Agregar a Favoritos' : 'Agregado a tus Favoritos'}
+          {place.isFavorite ? 'Agregado a Favoritos' : 'Agregar a tus Favoritos'}
         </p>
       </div>
 
@@ -68,52 +79,58 @@ export const Details = ({ place }) => {
         <div className='flex items-center gap-x-4'>
           <FaMapMarkerAlt size={28} className='text-neutral-700' />
           <p className='text-neutral-500 capitalize'>
-            {place.types
+            {place.types && place.types.length > 0
               ? place.types[0].replace(place.types[0], typesToSpanish[place.types[0]])
               : 'Esblecimiento'}
           </p>
         </div>
 
-        <Paragraph text={place.formatted_address && place.formatted_address}>
-          <FaRegMap size={32} className='text-neutral-700' />
-          <p className='text-neutral-500'>{place.formatted_address && place.formatted_address}</p>
-        </Paragraph>
+        {place && place?.formatted_address && (
+          <Paragraph text={place.formatted_address}>
+            <FaRegMap size={32} className='text-neutral-700' />
+            <p className='text-neutral-500'>{place.formatted_address}</p>
+          </Paragraph>
+        )}
 
-        <Paragraph text={place.international_phone_number && place.international_phone_number}>
-          <FaPhoneAlt size={24} className='text-neutral-700' />
-          <p className='text-neutral-500'>
-            {place.international_phone_number && place.international_phone_number}
-          </p>
-        </Paragraph>
+        {place && place?.international_phone_number && (
+          <Paragraph text={place.international_phone_number}>
+            <FaPhoneAlt size={24} className='text-neutral-700' />
+            <p className='text-neutral-500'>
+              {place.international_phone_number && place.international_phone_number}
+            </p>
+          </Paragraph>
+        )}
 
-        <div className='flex items-center gap-x-4'>
-          <ImEarth size={24} className='text-neutral-700' />
-          <p className='text-neutral-500'>
-            {place.website && place.website && (
+        {place && place?.website && (
+          <div className='flex items-center gap-x-4'>
+            <ImEarth size={24} className='text-neutral-700' />
+            <p className='text-neutral-500'>
               <a href={place.website} target='_blank' rel='noreferrer'>
                 {place.website}
               </a>
-            )}
-          </p>
-        </div>
+            </p>
+          </div>
+        )}
 
-        <div className='flex items-center gap-x-4'>
-          <FaClock size={24} className='text-neutral-700' />
-          <p className='text-neutral-500'>
-            {place.opening_hours && place.opening_hours.open_now ? (
-              <strong className='text-alert-success'>Abierto ahora</strong>
-            ) : (
-              <strong className='text-alert-error'>Cerrado ahora</strong>
-            )}
-            {
-              <span className='font-normal text-stone-600'>
-                {place.opening_hours && place.open_now
-                  ? ` - Cierra  ${place.opening_hours.periods[day]?.close?.time}`
-                  : ` - Abre ${place.opening_hours.periods[day]?.open?.time}`}
-              </span>
-            }
-          </p>
-        </div>
+        {place && place?.opening_hours && (
+          <div className='flex items-center gap-x-4'>
+            <FaClock size={24} className='text-neutral-700' />
+            <p className='text-neutral-500'>
+              {place?.opening_hours.open_now ? (
+                <strong className='text-alert-success'>Abierto ahora</strong>
+              ) : (
+                <strong className='text-alert-error'>Cerrado ahora</strong>
+              )}
+              {
+                <span className='font-normal text-stone-600'>
+                  {place?.open_now
+                    ? ` - Cierra  ${place.opening_hours.periods[day]?.close?.time}`
+                    : ` - Abre ${place.opening_hours.periods[day]?.open?.time}`}
+                </span>
+              }
+            </p>
+          </div>
+        )}
       </article>
     </article>
   );
