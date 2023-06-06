@@ -1,4 +1,4 @@
-import { setIsLoading, setErrors, setUser, setIsValid, setFavorites } from './authSlice';
+import { setIsLoading, setErrors, setUser, setIsValid, setFavorites, setLogOut } from './authSlice';
 import { setDetailFavorite } from '../detail/detailsSlice';
 import LugarAccesibleApi from '../../api/LugarAccesibleApi';
 import { toast } from 'react-hot-toast';
@@ -103,7 +103,6 @@ export const submitLogin = (form) => {
       if (data) {
         const userString = JSON.stringify(data.data);
         sessionStorage.setItem('user', userString);
-        sessionStorage.setItem('jwt', data.data.accesstoken);
         dispatch(setUser(data.data));
       }
     } catch (err) {
@@ -115,6 +114,28 @@ export const submitLogin = (form) => {
         });
       }
       dispatch(setErrors(response.data.msg)); // set errors
+    } finally {
+      dispatch(setIsLoading());
+    }
+  };
+};
+
+export const submitLogoutUser = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setIsLoading()); // is loading to true
+      const { data } = await LugarAccesibleApi.get('user/logout');
+      if (data) {
+        dispatch(setLogOut());
+      }
+    } catch (err) {
+      const { response } = err;
+      if (response.data.msg) {
+        toast.error(`${response.data.msg}`, {
+          position: 'top-right',
+          duration: 3500,
+        });
+      }
     } finally {
       dispatch(setIsLoading());
     }

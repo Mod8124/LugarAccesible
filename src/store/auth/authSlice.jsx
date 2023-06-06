@@ -42,7 +42,6 @@ export const authSlice = createSlice({
       state.user = null;
       state.errors = null;
       sessionStorage.removeItem('user');
-      sessionStorage.removeItem('jwt');
     },
   },
 });

@@ -12,16 +12,7 @@ const URLS = {
 
 const LugarAccesibleApi = axios.create({
   baseURL: URLS.development.local,
-});
-
-LugarAccesibleApi.interceptors.request.use((config) => {
-  config.headers = {
-    ...config.headers,
-    'Content-Type': 'application/json',
-    Authorization: 'bearer ' + sessionStorage.getItem('jwt'),
-  };
-
-  return config;
+  withCredentials: true,
 });
 
 export default LugarAccesibleApi;

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useToggle } from '../../../../hooks/useToggle';
-import { setIsModalActive, setView, setLogOut } from '../../../../store/auth/authSlice';
-import { getFavorites } from '../../../../store/auth/thunk';
+import { setIsModalActive, setView } from '../../../../store/auth/authSlice';
+import { getFavorites, submitLogoutUser } from '../../../../store/auth/thunk';
 
 export const UserLogic = () => {
   const { user } = useSelector((state) => state.auth);
@@ -9,7 +9,7 @@ export const UserLogic = () => {
   const dispatch = useDispatch();
 
   const closeUserSession = () => {
-    dispatch(setLogOut());
+    dispatch(submitLogoutUser());
   };
 
   const toggleModalActive = () => {
