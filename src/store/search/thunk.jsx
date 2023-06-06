@@ -12,6 +12,9 @@ export const getResults = (searchObject) => {
         }`,
       );
       if (data) dispatch(setResults(data.data));
+      // const resp = await fetch('/mock/searchMock.json'); mock searc data
+      // const data = await resp.json();
+      // if (data) dispatch(setResults(data.data));
     } catch (error) {
       const { response } = error;
       console.log(response);

@@ -8,7 +8,7 @@ export const validationRegisterMsg = {
     isEmail: 'El email no es válido',
   },
   password: {
-    required: 'La contraseña es obligatorio',
+    required: 'La contraseña es obligatoria',
     isSixLength: 'La contraseña debe ser de al menos 6 caracteres',
   },
   passwordConfirmation: {

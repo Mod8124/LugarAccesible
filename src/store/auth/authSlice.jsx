@@ -32,6 +32,9 @@ export const authSlice = createSlice({
     setUser(state, { payload }) {
       state.user = payload;
     },
+    setFavorites(state, { payload }) {
+      state.favorites = payload;
+    },
     setErrors(state, { payload }) {
       state.errors = payload;
     },
@@ -39,7 +42,6 @@ export const authSlice = createSlice({
       state.user = null;
       state.errors = null;
       sessionStorage.removeItem('user');
-      sessionStorage.removeItem('jwt');
     },
   },
 });
@@ -47,6 +49,7 @@ export const authSlice = createSlice({
 export const {
   setIsLoading,
   setIsValid,
+  setFavorites,
   setUser,
   setErrors,
   setLogOut,
