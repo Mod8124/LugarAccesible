@@ -2,14 +2,14 @@
 
 <img src="/public/assets/logo/logo.svg" width="180"/>
 
-<a href="https://github.com/Mod8124/LugarAccesible-back">Explore the LugarAccesibleAPI</a>
-·
-<a href="https://github.com/Mod8124/LugarAccesible/issues">Bug report</a>
-·
-<a href="">Explore Demo</a>
 
 > ~
 >
+>  <a href="https://github.com/Mod8124/LugarAccesible-back">Explore LugarAccesibleAPI</a>
+> ·
+> <a href="https://github.com/Mod8124/LugarAccesible/issues">Bug report</a>
+> ·
+> <a href="">Explore Demo</a>
 > <p>Build a web platform that uses third-party APIs to provide accessibility information based on location for people with reduced mobility.</p>
 > <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
 > <img src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white">
