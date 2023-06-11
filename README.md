@@ -2,8 +2,6 @@
 
 <img src="/public/assets/logo/logo.svg" width="180"/>
 
-<h2>LugarAccesible</h2>
-
 <a href="https://github.com/Mod8124/LugarAccesible-back">Explore the LugarAccesibleAPI</a>
 ·
 <a href="https://github.com/Mod8124/LugarAccesible/issues">Bug report</a>
