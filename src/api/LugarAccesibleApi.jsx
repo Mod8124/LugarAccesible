@@ -6,7 +6,7 @@ const URLS = {
     local: environment.HOST,
   },
   production: {
-    railway: 'https://lugaraccesible-back-production.up.railway.app/api/v1/',
+    railway: environment.HOST,
   },
 };
 
