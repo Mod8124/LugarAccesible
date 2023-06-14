@@ -11,7 +11,7 @@ export const ValidationPage = () => {
     >
       <section className='w-[90%] m-auto max-w-[700px] flex-col flex items-center h-[90%] max-h-[440px]'>
         <picture>
-          <img src='/public/assets/logo/logo.svg' alt='logo' />
+          <img src='/assets/logo/logo.svg' alt='logo' />
         </picture>
         <article className='bg-white h-full w-full flex items-center mt-9'>
           <div>

@@ -92,10 +92,10 @@ export const useActionsPlaces = (map, nearbyPlaces) => {
 
       const urlPath = () => {
         return filter && filter === 'accesible' && wheelchair_accessible_entrance
-          ? `/public/assets/icons-map/icon-${urlIcon}-accesible.svg`
+          ? `/assets/icons-map/icon-${urlIcon}-accesible.svg`
           : filter && filter === 'no-accesible' && !wheelchair_accessible_entrance
-          ? `/public/assets/icons-map/icon-${urlIcon}-no.svg`
-          : `/public/assets/icons-map/icon-${urlIcon}.svg`;
+          ? `/assets/icons-map/icon-${urlIcon}-no.svg`
+          : `/assets/icons-map/icon-${urlIcon}.svg`;
       };
 
       const urlImg = {

@@ -16,7 +16,7 @@ export const ModalIntroduction = () => {
     <section className='bg-black/40 fixed w-full h-full z-[10] left-0 top-0 backdrop-blur-sm flex items-center justify-center'>
       <article className='w-[90%] min-h-[41%] bg-white max-w-[740px] p-4 sm:p-8  modal__landscape'>
         <picture className='flex justify-center'>
-          <img src='/public/assets/logo/logo-black.svg' alt='logo' />
+          <img src='/assets/logo/logo-black.svg' alt='logo' />
         </picture>
         <p className='pt-3 pb-2 sm:pt-5 sm:pb-5 sm:w-[90%] text-center break-words text-pt md:text-pd text-neutral-700 w-full break-words m-auto'>
           <strong>Descubre</strong> lugares <strong>accesibles</strong> para silla de ruedas
@@ -27,12 +27,12 @@ export const ModalIntroduction = () => {
           <div className='flex flex-wrap gap-y-4 gap-x-2 items-center justify-center  basis-[100%] sm:basis-[50%] lg:basis-auto'>
             <h5 className='text-neutral-500 font-bold   basis-full text-center'>Lugar accesible</h5>
             <picture>
-              <img src='/public/assets/icons-map/icon-bank-accesible.svg' alt='icon accesible' />
+              <img src='/assets/icons-map/icon-bank-accesible.svg' alt='icon accesible' />
             </picture>
             <picture>
               <img
                 className='w-[44px]'
-                src='/public/assets/icons/wheel-accesible.svg'
+                src='/assets/icons/wheel-accesible.svg'
                 alt='icon accesible'
               />
             </picture>
@@ -40,7 +40,7 @@ export const ModalIntroduction = () => {
           <div className='flex flex-col gap-y-4 items-center h-full basis-[100%] sm:basis-[50%] lg:basis-auto'>
             <h5 className='text-neutral-500 font-bold '>Lugar en general</h5>
             <picture>
-              <img src='/public/assets/icons-map/icon-bank.svg' alt='icon accesible' />
+              <img src='/assets/icons-map/icon-bank.svg' alt='icon accesible' />
             </picture>
           </div>
           <div className='flex flex-wrap gap-y-4  gap-x-2 items-center justify-center h-full'>
@@ -48,14 +48,10 @@ export const ModalIntroduction = () => {
               Lugar no-accesible
             </h5>
             <picture>
-              <img src='/public/assets/icons-map/icon-bank-no.svg' alt='icon accesible' />
+              <img src='/assets/icons-map/icon-bank-no.svg' alt='icon accesible' />
             </picture>
             <picture>
-              <img
-                className='w-[44px]'
-                src='/public/assets/icons/wheel-no.svg'
-                alt='icon accesible'
-              />
+              <img className='w-[44px]' src='/assets/icons/wheel-no.svg' alt='icon accesible' />
             </picture>
           </div>
         </article>

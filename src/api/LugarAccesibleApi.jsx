@@ -1,17 +1,17 @@
 import axios from 'axios';
+import { environment } from '../settings/environment';
 
 const URLS = {
   development: {
-    local: 'http://localhost:3000/api/v1/',
+    local: environment.HOST,
   },
   production: {
-    donweb: 'https://vps-3308549-x.dattaweb.com/api/v1',
-    azure: 'https://devathon-api.azurewebsites.net/',
+    railway: environment.HOST,
   },
 };
 
 const LugarAccesibleApi = axios.create({
-  baseURL: URLS.development.local,
+  baseURL: URLS.production.railway,
   withCredentials: true,
 });
 

@@ -87,8 +87,8 @@ const Search = () => {
                         className='max-w-[40px]'
                         src={
                           result.wheelchair_accessible_entrance
-                            ? '/public/assets/icons/wheel-accesible.svg'
-                            : '/public/assets/icons/wheel-no.svg'
+                            ? '/assets/icons/wheel-accesible.svg'
+                            : 's/assets/icons/wheel-no.svg'
                         }
                       />
                     </div>
