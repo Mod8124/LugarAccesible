@@ -1,5 +1,6 @@
 import { AiOutlineMail } from 'react-icons/ai';
 import { ValidationLogic } from './ValidationLogic';
+import { Helmet } from 'react-helmet';
 
 export const ValidationPage = () => {
   const { imageBack } = ValidationLogic();
@@ -9,6 +10,7 @@ export const ValidationPage = () => {
       className='basis-full h-screen w-full flex justify-center items-center lg:justify-normal lg:items-baseline lg:basis-1/2 bg-cover bg-center'
       style={{ backgroundImage: `url(${imageBack})` }}
     >
+      <Helmet title='LugarAccesible - validation' />
       <section className='w-[90%] m-auto max-w-[700px] flex-col flex items-center h-[90%] max-h-[440px]'>
         <picture>
           <img src='/assets/logo/logo.svg' alt='logo' />

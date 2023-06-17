@@ -11,6 +11,7 @@ import {
   AiOutlineEye,
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
+import { Helmet } from 'react-helmet';
 
 const LoginPage = () => {
   const { register, handleSubmit, errors, onSubmit, isLoading } = LoginLogic();
@@ -19,6 +20,7 @@ const LoginPage = () => {
 
   return (
     <main className='flex min-h-screen flex-wrap'>
+      <Helmet title='LugarAccesible - Login' />
       <section className='flex basis-full lg:basis-1/2 items-center justify-center relative order-last lg:order-first'>
         <figure className='absolute top-10 left-8 hidden lg:flex'>
           <Link to='/'>

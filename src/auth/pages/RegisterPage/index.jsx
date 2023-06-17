@@ -11,6 +11,7 @@ import {
   AiOutlineEye,
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
+import { Helmet } from 'react-helmet';
 
 const RegisterPage = () => {
   const {
@@ -28,6 +29,7 @@ const RegisterPage = () => {
 
   return (
     <main className='flex min-h-screen flex-wrap'>
+      <Helmet title='LugarAccesible - Register' />
       <section
         className='basis-full flex justify-center items-center lg:justify-normal lg:items-baseline lg:basis-1/2 bg-cover bg-center'
         style={{ backgroundImage: `url(${imageBack})` }}
