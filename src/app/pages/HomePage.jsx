@@ -9,6 +9,7 @@ import { Filter } from '../components/Filter';
 import { Edit } from '../components/Edit';
 import { ModalIntroduction } from '../components/ModalIntroduction';
 import DetailPlace from '../components/DetailPlace/DetailPlace';
+import { Helmet } from 'react-helmet';
 
 const Homepage = () => {
   const { deniedLocation } = usePlacesStore();
@@ -18,6 +19,7 @@ const Homepage = () => {
   return (
     <>
       <Header />
+      <Helmet title='LugarAccesible' />
       <Filter />
       <MapView />
       {deniedLocation && <ErrorAccessLocation />}
